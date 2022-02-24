@@ -23,6 +23,6 @@ struct LandmarkRow: View {
 
 struct LandmarkRow_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkRow(landmark: landmarks[0])
+        LandmarkRow(landmark: landmarks[3])
     }
 }
