@@ -8,7 +8,7 @@ desc "Run Tests & Increase Build number"
 
   desc "Run Tests & Increase Build number and update patch version number"
   lane :onpatchmerge do
-    #scan(scheme: "ActionOne") # Name of the scema to be tested
+    scan(scheme: "Landmarks") # Name of the scema to be tested
     increment_build_number
     increment_version_number_in_xcodeproj
     while (git_tag_exists(tag: "p"+get_version_number_from_xcodeproj(scheme: "Landmarks", build_configuration_name: "Release"), remote: true )) do
