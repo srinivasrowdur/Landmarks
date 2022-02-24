@@ -12,7 +12,14 @@ desc "Run Tests & Increase Build number"
     increment_build_number
     increment_version_number_in_xcodeproj
     while (git_tag_exists(tag: "p"+get_version_number_from_xcodeproj(scheme: "Landmarks", build_configuration_name: "Release"), remote: true )) do
-      increment_version_number_in_xcodeproj
+      if(git_tag_exists(tag: "v"+get_version_number_from_xcodeproj(scheme: "Landmarks", build_configuration_name: "Release"), remote: true ))
+
+        increment_version_number_in_xcodeproj(
+          bump_type: 'minor' # Automatically increment minor version number
+        )
+      else
+        increment_version_number_in_xcodeproj
+      end
     end
     add_git_tag( tag: "p"+get_version_number_from_xcodeproj(scheme: "Landmarks", build_configuration_name: "Release"))
    # version =  get_version_number_from_xcodeproj(scheme: "ActionOne", build_configuration_name: "Release") 
